@@ -185,7 +185,7 @@ const App: React.FC = () => {
               <div className="flex flex-col items-center text-center">
                 <div className="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center mb-4 border border-slate-700">1</div>
                 <p className="text-sm font-semibold text-slate-400 uppercase tracking-tighter">Copy link</p>
-                <p className="text-xs mt-1">Share > Copy Link in TikTok</p>
+                <p className="text-xs mt-1">Share &gt; Copy Link in TikTok</p>
               </div>
               <div className="flex flex-col items-center text-center">
                 <div className="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center mb-4 border border-slate-700">2</div>
