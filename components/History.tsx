@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { HistoryItem } from '../types';
+import { HistoryItem } from '../types.ts';
 
 interface HistoryProps {
   items: HistoryItem[];

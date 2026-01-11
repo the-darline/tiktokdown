@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { TikTokVideoData } from '../types';
+import { TikTokVideoData } from '../types.ts';
 
 interface VideoCardProps {
   data: TikTokVideoData;
@@ -8,8 +8,6 @@ interface VideoCardProps {
 
 const VideoCard: React.FC<VideoCardProps> = ({ data }) => {
   const handleDownload = (url: string, filename: string) => {
-    // In a real browser environment, we might need to fetch the blob to bypass some CORS restrictions on direct downloads
-    // or just open in new tab if direct download header isn't set.
     const link = document.createElement('a');
     link.href = url;
     link.setAttribute('download', filename);
@@ -22,7 +20,6 @@ const VideoCard: React.FC<VideoCardProps> = ({ data }) => {
   return (
     <div className="bg-slate-800/50 backdrop-blur-md rounded-3xl overflow-hidden border border-slate-700/50 shadow-2xl transition-all duration-500 animate-in fade-in slide-in-from-bottom-4">
       <div className="md:flex">
-        {/* Preview Section */}
         <div className="md:w-1/3 relative group">
           <img 
             src={data.cover} 
@@ -43,7 +40,6 @@ const VideoCard: React.FC<VideoCardProps> = ({ data }) => {
           </div>
         </div>
 
-        {/* Info Section */}
         <div className="md:w-2/3 p-6 md:p-8 flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-3 mb-6">

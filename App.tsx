@@ -1,9 +1,9 @@
 
 import React, { useState, useEffect } from 'react';
-import { fetchTikTokInfo, isValidTikTokUrl } from './services/tiktokApi';
-import { TikTokVideoData, HistoryItem } from './types';
-import VideoCard from './components/VideoCard';
-import History from './components/History';
+import { fetchTikTokInfo, isValidTikTokUrl } from './services/tiktokApi.ts';
+import { TikTokVideoData, HistoryItem } from './types.ts';
+import VideoCard from './components/VideoCard.tsx';
+import History from './components/History.tsx';
 
 const App: React.FC = () => {
   const [url, setUrl] = useState('');
@@ -12,7 +12,6 @@ const App: React.FC = () => {
   const [videoData, setVideoData] = useState<TikTokVideoData | null>(null);
   const [history, setHistory] = useState<HistoryItem[]>([]);
 
-  // Initialize history from localStorage
   useEffect(() => {
     const saved = localStorage.getItem('toksave_history');
     if (saved) {
@@ -24,7 +23,6 @@ const App: React.FC = () => {
     }
   }, []);
 
-  // Sync history to localStorage
   useEffect(() => {
     localStorage.setItem('toksave_history', JSON.stringify(history.slice(0, 15)));
   }, [history]);
@@ -40,7 +38,6 @@ const App: React.FC = () => {
     };
     
     setHistory(prev => {
-      // Don't duplicate the exact same video
       const filtered = prev.filter(item => item.id !== newItem.id);
       return [newItem, ...filtered].slice(0, 15);
     });
@@ -64,7 +61,7 @@ const App: React.FC = () => {
       if (response && response.data) {
         setVideoData(response.data);
         addToHistory(response.data, finalUrl);
-        if (!targetUrl) setUrl(''); // Success! Clear the input
+        if (!targetUrl) setUrl('');
       } else {
         throw new Error("Could not find video data in the response.");
       }
@@ -85,7 +82,6 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center pb-20 px-4">
-      {/* Background decoration */}
       <div className="fixed inset-0 pointer-events-none -z-10">
         <div className="absolute top-[-5%] left-[-5%] w-1/2 h-1/2 bg-[#ff0050]/5 rounded-full blur-[100px]"></div>
         <div className="absolute bottom-[-5%] right-[-5%] w-1/2 h-1/2 bg-[#00f2ea]/5 rounded-full blur-[100px]"></div>
@@ -104,7 +100,6 @@ const App: React.FC = () => {
       </header>
 
       <main className="w-full max-w-4xl">
-        {/* Input Area */}
         <div className="relative group mb-8">
           <div className="absolute -inset-0.5 bg-gradient-to-r from-[#ff0050] to-[#00f2ea] rounded-[30px] blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
           <div className="relative bg-slate-900/80 backdrop-blur-xl border border-slate-700/50 rounded-[28px] p-2 flex flex-col sm:flex-row gap-2">
@@ -152,7 +147,6 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        {/* Dynamic Content */}
         {error && (
           <div className="mb-8 p-5 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-300 animate-in fade-in slide-in-from-top-2">
             <div className="flex gap-4">
@@ -207,7 +201,6 @@ const App: React.FC = () => {
           </div>
         )}
 
-        {/* History */}
         <History items={history} onSelect={handleDownload} onClear={clearHistory} />
       </main>
 
