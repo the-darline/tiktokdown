@@ -1,0 +1,5 @@
+{
+  "name": "TokSave - TikTok Downloader",
+  "description": "A high-performance TikTok video downloader that extracts high-quality videos without watermarks using RapidAPI.",
+  "requestFramePermissions": []
+}
